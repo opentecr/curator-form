@@ -1,4 +1,17 @@
-<h1>openTECR Curated Measurement Submission</h1>
-<p>
-    Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
-</p>
+<script lang="ts">
+    import { Stepper, Step } from '@skeletonlabs/skeleton';
+
+    import PersonalInfo from './PersonalInfo.svelte';
+    import Publication from './Publication.svelte';
+    import Reaction from './Reaction.svelte';
+    import CuratedMeasurements from './CuratedMeasurements.svelte';
+
+    let lockedState: boolean = false;
+</script>
+
+<Stepper>
+    <PersonalInfo {lockedState} />
+    <Publication {lockedState} />
+    <Reaction {lockedState} />
+    <CuratedMeasurements {lockedState} />
+</Stepper>
