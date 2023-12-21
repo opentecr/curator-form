@@ -41,9 +41,7 @@
     }
 
     $: if (orcid) {
-        let match = orcid.match(orcidPattern);
-        console.debug(match);
-        isValid = match !== null;
+        isValid = orcid.match(orcidPattern) !== null;
     }
 
     $: if (orcid && isValid) {
