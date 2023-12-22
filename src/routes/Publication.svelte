@@ -1,7 +1,8 @@
 <script lang="ts">
     import { Step } from '@skeletonlabs/skeleton';
+    import { type Works } from '@jamesgopsill/crossref-client';
 
-    import { CrossRefService, type IWork } from '$lib/crossRefService';
+    import { CrossRefService } from '$lib/crossRefService';
     import logo from '$lib/assets/icons/DOI_logo.svg';
 
     export let lockedState: boolean = true;
@@ -9,11 +10,14 @@
     let doi: string = '';
     let symbol: string = '';
     let timer: ReturnType<typeof setTimeout>;
-    let publication: IWork | null = null;
+    let publication: Works | null = null;
+
+    const service = new CrossRefService();
 
     function getPublication() {
-        CrossRefService.getWork(doi)
-            .then((work: IWork) => {
+        service
+            .getWork(doi)
+            .then((work: Works) => {
                 console.debug(work);
                 publication = work;
                 symbol = '&#10004;'; // check mark

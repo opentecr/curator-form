@@ -1,27 +1,21 @@
+import { CrossrefClient, type Works } from '@jamesgopsill/crossref-client';
+
 import { NotFoundError, HttpError } from './errors';
 
-export interface IWork {
-    title: string;
-    DOI: string;
-    ISSN: string[];
-    abstract?: string;
-}
-
-export interface IWorkResponse {
-    message: IWork;
-}
-
 export class CrossRefService {
-    static API_URL: string = 'https://api.crossref.org';
+    client: CrossrefClient;
 
-    static async getWork(doi: string): Promise<IWork> {
-        const response: Response = await fetch(`${this.API_URL}/works/${doi}`);
+    constructor(mailto: string | undefined = undefined) {
+        this.client = new CrossrefClient(mailto);
+    }
+
+    async getWork(doi: string): Promise<Works> {
+        const response = await this.client.work(doi);
         if (response.status === 404) {
             throw new NotFoundError(`Work with DOI '${doi}' not found.`);
         } else if (!response.ok) {
             throw new HttpError(response);
         }
-        const rsp: IWorkResponse = await response.json();
-        return rsp.message;
+        return response.content.message;
     }
 }
