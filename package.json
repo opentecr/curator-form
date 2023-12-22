@@ -45,6 +45,6 @@
   },
   "type": "module",
   "dependencies": {
-    "@jamesgopsill/crossref-client": "^1.0.1"
+    "@jamesgopsill/crossref-client": "^1.0.2"
   }
 }
