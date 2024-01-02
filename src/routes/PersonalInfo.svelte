@@ -5,6 +5,8 @@
     import { OrcidService } from '$lib/orcidService';
     import logoBW from '$lib/assets/icons/ORCIDiD_iconbwvector.svg';
 
+    import Card from '$components/Card.svelte';
+
     export let lockedState: boolean = true;
     export let denyCustomName: boolean = true;
 
@@ -51,28 +53,35 @@
 
 <Step locked={lockedState}>
     <svelte:fragment slot="header">Personal Info</svelte:fragment>
-    <label class="label">
-        <span
-            >ORCID <img
-                alt="The ORCID logo in black and white."
-                src={logoBW}
-                class="orcid-logo"
-            /></span
-        >
-        <input
-            type="text"
-            placeholder="0000-0000-0000-0000"
-            bind:value={orcid}
-            class="input"
-            class:input-success={orcid && isValid}
-            class:input-error={orcid && !isValid}
-        />
-        <span>
-            {@html symbol}
-        </span>
-    </label>
-    <label class="label">
-        <span>Name</span>
-        <input class="input" type="text" bind:value={name} readonly={denyCustomName} />
-    </label>
+    <Card>
+        <label class="label">
+            <span
+                >ORCID <img
+                    alt="The ORCID logo in black and white."
+                    src={logoBW}
+                    class="orcid-logo"
+                /></span
+            >
+            <input
+                type="text"
+                placeholder="0000-0000-0000-0000"
+                bind:value={orcid}
+                class="input"
+                class:input-success={orcid && isValid}
+                class:input-error={orcid && !isValid}
+            />
+            <span>
+                {@html symbol}
+            </span>
+        </label>
+        <label class="label">
+            <span>Name</span>
+            <input
+                class="input"
+                type="text"
+                bind:value={name}
+                readonly={denyCustomName}
+            />
+        </label>
+    </Card>
 </Step>

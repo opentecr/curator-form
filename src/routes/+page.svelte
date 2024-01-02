@@ -9,7 +9,7 @@
     let lockedState: boolean = false;
 </script>
 
-<Stepper>
+<Stepper class="min-w-min w-3/4 p-4">
     <PersonalInfo {lockedState} />
     <Publication {lockedState} />
     <Reaction {lockedState} />

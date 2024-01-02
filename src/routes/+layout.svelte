@@ -10,5 +10,7 @@
         ><AppBar><h1 class="h1">openTECR Curated Measurement Submission</h1></AppBar
         ></svelte:fragment
     >
-    <slot />
+    <div class="w-full flex justify-center">
+        <slot />
+    </div>
 </AppShell>
