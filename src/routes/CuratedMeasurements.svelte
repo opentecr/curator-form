@@ -1,8 +1,9 @@
 <script lang="ts">
     import { Step } from '@skeletonlabs/skeleton';
 
-    import ConfidenceRange from '$components/ConfidenceRange.svelte';
+    import ConfidenceRangeInput from '$components/ConfidenceRangeInput.svelte';
     import Card from '$components/Card.svelte';
+    import MeasurementInput from '$components/MeasurementInput.svelte';
 
     export let lockedState: boolean = true;
 </script>
@@ -10,45 +11,15 @@
 <Step locked={lockedState}>
     <svelte:fragment slot="header">Curated Measurements</svelte:fragment>
     <Card>
-        <fieldset class="border-solid border-2 border-primary-700">
-            <legend>Measurement</legend>
-            <fieldset>
-                <label class="label">
-                    <span>Equilibrium Constant</span>
-                    <input class="input" type="number" placeholder="" />
-                    <ConfidenceRange />
-                </label>
+        <header class="card-header h3 text-center"><p class="">Measurement</p></header>
+        <section>
+            <fieldset class="flex flex-col gap-x-4 gap-y-4">
+                <MeasurementInput label="Equilibrium Constant" />
+                <MeasurementInput label="Hydrogen Potential (pH)" />
+                <MeasurementInput label="Magnesium Potential (pMg)" />
+                <MeasurementInput label="Temperature" choices={['K', '°C', 'F']} />
+                <MeasurementInput label="Ionic Strength" hasFreeUnit={true} />
             </fieldset>
-            <fieldset>
-                <label class="label">
-                    <span>Hydrogen Potential (pH)</span>
-                    <input class="input" type="number" placeholder="" />
-                    <ConfidenceRange />
-                </label>
-            </fieldset>
-            <fieldset>
-                <label class="label">
-                    <span>Magnesium Potential (pMg)</span>
-                    <input class="input" type="number" placeholder="" />
-                    <ConfidenceRange />
-                </label>
-            </fieldset>
-            <fieldset>
-                <label class="label">
-                    <span>Temperature</span>
-                    <input class="input" type="number" placeholder="" />
-                    <input class="input" type="text" placeholder="K" />
-                    <ConfidenceRange />
-                </label>
-            </fieldset>
-            <fieldset>
-                <label class="label">
-                    <span>Ionic Strength</span>
-                    <input class="input" type="number" placeholder="" />
-                    <input class="input" type="text" placeholder="Unit" />
-                    <ConfidenceRange />
-                </label>
-            </fieldset>
-        </fieldset>
+        </section>
     </Card>
 </Step>

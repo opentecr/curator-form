@@ -4,8 +4,8 @@
     const max = 5;
 </script>
 
-<fieldset>
+<div class="min-w-max w-1/2">
     <span>Uncertain</span>
-    <input type="range" bind:value {min} {max} />
+    <input type="range" bind:value {min} {max} class="inline-block" />
     <span>Highly Confident</span>
-</fieldset>
+</div>
