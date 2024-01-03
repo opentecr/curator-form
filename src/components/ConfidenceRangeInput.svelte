@@ -12,7 +12,7 @@
 
 <div class="w-40">
     <label class="label">
-        <span>{range[value]}</span>
+        <span>{range[value.toString()]}</span>
         <input type="range" bind:value {min} {max} class="inline-block" />
     </label>
 </div>

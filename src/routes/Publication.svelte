@@ -2,6 +2,7 @@
     import { Step } from '@skeletonlabs/skeleton';
     import { type Works } from '@jamesgopsill/crossref-client';
 
+    import { currentCuratedMeasurement } from '$lib/stores';
     import { CrossRefService } from '$lib/crossRefService';
     import logo from '$lib/assets/icons/DOI_logo.svg';
 
@@ -40,6 +41,12 @@
 
     $: if (doi) {
         debounceRequest();
+        currentCuratedMeasurement.update((current) => {
+            return {
+                ...current,
+                publication: { doi }
+            };
+        });
     }
 </script>
 

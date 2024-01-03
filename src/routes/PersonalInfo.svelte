@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Step } from '@skeletonlabs/skeleton';
 
+    import { currentCuratedMeasurement } from '$lib/stores';
     import { NotFoundError } from '$lib/errors';
     import { OrcidService } from '$lib/orcidService';
     import logoBW from '$lib/assets/icons/ORCIDiD_iconbwvector.svg';
@@ -48,6 +49,12 @@
 
     $: if (orcid && isValid) {
         debounceRequest();
+        currentCuratedMeasurement.update((current) => {
+            return {
+                ...current,
+                contributor: { orcid, name }
+            };
+        });
     }
 </script>
 
